@@ -628,7 +628,7 @@ function pattern_description_to_number(pattern_description) {
     case 'decreasing':
         return PATTERN[DECREASING];
     default:
-        return nil
+        return null
   }
 }
 

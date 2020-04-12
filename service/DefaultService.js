@@ -15,8 +15,14 @@ var prediction = require('../utils/prediction.js');
 exports.stalkPrediction = function(firstTimeBuyer,previousPattern,sellPrice,buyPrice) {
   return new Promise(function(resolve, reject) {
     var examples = {};
+    
+    // Convert to the format expected by analyze_possibilities
+    var allPrices = [sellPrice]
+    if (buyPrice && buyPrice.length > 0) {
+      allPrices = allPrices.concat(buyPrice)
+    }
 
-    generated_possibilities = prediction.analyze_possibilities(buyPrice, firstTimeBuyer, previousPattern)
+    generated_possibilities = prediction.analyze_possibilities(allPrices, firstTimeBuyer, previousPattern)
 
     examples['application/json'] = generated_possibilities;
     if (Object.keys(examples).length > 0) {
