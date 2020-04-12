@@ -17,7 +17,7 @@ exports.stalkPrediction = function(firstTimeBuyer,previousPattern,sellPrice,buyP
     examples['application/json'] = [ {
   "minimumPrices" : [ 128, 120, 113, 105, 98, 90, 83, 135, 211, 302, 211, 135 ],
   "maximumOverall" : 906,
-  "probability" : 20.0,
+  "probability" : 20,
   "maximumPrices" : [ 136, 132, 127, 123, 118, 114, 109, 212, 302, 906, 302, 212 ],
   "pattern" : "LargeSpike",
   "minimumOverall" : 302,
@@ -25,7 +25,7 @@ exports.stalkPrediction = function(firstTimeBuyer,previousPattern,sellPrice,buyP
 }, {
   "minimumPrices" : [ 128, 120, 113, 105, 98, 90, 83, 135, 211, 302, 211, 135 ],
   "maximumOverall" : 906,
-  "probability" : 20.0,
+  "probability" : 20,
   "maximumPrices" : [ 136, 132, 127, 123, 118, 114, 109, 212, 302, 906, 302, 212 ],
   "pattern" : "LargeSpike",
   "minimumOverall" : 302,

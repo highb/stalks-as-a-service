@@ -1,0 +1,183 @@
+openapi: 3.0.0
+info:
+  title: Stalks as a Service
+  description: Stalk market prediction made programmatic
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0-oas3
+servers:
+- url: https://virtserver.swaggerhub.com/highb/stalks-as-a-service/1.0.0
+- url: http://virtserver.swaggerhub.com/highb/stalks-as-a-service/1.0.0
+paths:
+  /stalkPrediction:
+    get:
+      summary: Stalk Market Prediction
+      description: |
+        By passing in the appropriate options, you can get all predictions for your islands Stalk Market
+      operationId: stalkPrediction
+      parameters:
+      - name: firstTimeBuyer
+        in: query
+        description: Is this your first time buying turnips from Daisy Mae on your
+          island?
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          default: false
+      - name: previousPattern
+        in: query
+        description: What was last week's turnip price pattern
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - LargeSpike
+          - SmallSpike
+          - Fluctuating
+          - Decreasing
+      - name: sellPrice
+        in: query
+        description: How much Turnips are selling for this week
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 999
+          minimum: 0
+          type: integer
+          format: integer
+      - name: buyPrice
+        in: query
+        description: The daily prices that the Nooks are willing to pay in order from
+          Monday AM/PM to Saturday AM/PM prices.
+        required: false
+        style: form
+        explode: true
+        schema:
+          maxItems: 12
+          minItems: 0
+          type: array
+          items:
+            type: integer
+      responses:
+        "200":
+          description: Daily predictions for Stalk Market prices
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Prediction'
+                x-content-type: application/json
+        "400":
+          description: bad input parameter
+      x-swagger-router-controller: Default
+components:
+  schemas:
+    Prediction:
+      required:
+      - maximumOverall
+      - maximumPrices
+      - minimumOverall
+      - minimumPrices
+      - pattern
+      - probability
+      - sellPrice
+      type: object
+      properties:
+        pattern:
+          type: string
+          enum:
+          - LargeSpike
+          - SmallSpike
+          - Fluctuating
+          - Decreasing
+        probability:
+          type: number
+          example: 20
+        sellPrice:
+          type: integer
+          example: 151
+        minimumPrices:
+          maxItems: 12
+          minItems: 12
+          type: array
+          example:
+          - 128
+          - 120
+          - 113
+          - 105
+          - 98
+          - 90
+          - 83
+          - 135
+          - 211
+          - 302
+          - 211
+          - 135
+          items:
+            type: integer
+        maximumPrices:
+          maxItems: 12
+          minItems: 12
+          type: array
+          example:
+          - 136
+          - 132
+          - 127
+          - 123
+          - 118
+          - 114
+          - 109
+          - 212
+          - 302
+          - 906
+          - 302
+          - 212
+          items:
+            type: integer
+        minimumOverall:
+          type: integer
+          example: 302
+        maximumOverall:
+          type: integer
+          example: 906
+      example:
+        minimumPrices:
+        - 128
+        - 120
+        - 113
+        - 105
+        - 98
+        - 90
+        - 83
+        - 135
+        - 211
+        - 302
+        - 211
+        - 135
+        maximumOverall: 906
+        probability: 20
+        maximumPrices:
+        - 136
+        - 132
+        - 127
+        - 123
+        - 118
+        - 114
+        - 109
+        - 212
+        - 302
+        - 906
+        - 302
+        - 212
+        pattern: LargeSpike
+        minimumOverall: 302
+        sellPrice: 151
