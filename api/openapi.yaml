@@ -9,8 +9,8 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0-oas3
 servers:
-- url: https://virtserver.swaggerhub.com/highb/stalks-as-a-service/1.0.0
-- url: http://virtserver.swaggerhub.com/highb/stalks-as-a-service/1.0.0
+- url: https://highb-stalks-as-a-service.glitch.me
+- url: http://highb-stalks-as-a-service.glitch.me
 paths:
   /stalkPrediction:
     get:
