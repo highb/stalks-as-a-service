@@ -10,7 +10,7 @@
   "keywords": [
     "swagger"
   ],
-  "license": "Unlicense",
+  "license": "Apache-2.0",
   "private": true,
   "dependencies": {
     "connect": "^3.2.0",
