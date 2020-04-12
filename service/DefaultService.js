@@ -1,5 +1,6 @@
 'use strict';
 
+var prediction = require('../utils/prediction.js');
 
 /**
  * Stalk Market Prediction
@@ -14,23 +15,10 @@
 exports.stalkPrediction = function(firstTimeBuyer,previousPattern,sellPrice,buyPrice) {
   return new Promise(function(resolve, reject) {
     var examples = {};
-    examples['application/json'] = [ {
-  "minimumPrices" : [ 128, 120, 113, 105, 98, 90, 83, 135, 211, 302, 211, 135 ],
-  "maximumOverall" : 906,
-  "probability" : 20,
-  "maximumPrices" : [ 136, 132, 127, 123, 118, 114, 109, 212, 302, 906, 302, 212 ],
-  "pattern" : "LargeSpike",
-  "minimumOverall" : 302,
-  "sellPrice" : 151
-}, {
-  "minimumPrices" : [ 128, 120, 113, 105, 98, 90, 83, 135, 211, 302, 211, 135 ],
-  "maximumOverall" : 906,
-  "probability" : 20,
-  "maximumPrices" : [ 136, 132, 127, 123, 118, 114, 109, 212, 302, 906, 302, 212 ],
-  "pattern" : "LargeSpike",
-  "minimumOverall" : 302,
-  "sellPrice" : 151
-} ];
+
+    generated_possibilities = prediction.analyze_possibilities(buyPrice, firstTimeBuyer, previousPattern)
+
+    examples['application/json'] = generated_possibilities;
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
