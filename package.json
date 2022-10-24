@@ -13,8 +13,8 @@
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
-    "connect": "^3.2.0",
-    "js-yaml": "^3.3.0",
-    "oas3-tools": "^2.0.2"
+    "connect": "3.7.0",
+    "js-yaml": "3.14.1",
+    "oas3-tools": "2.2.3"
   }
 }
